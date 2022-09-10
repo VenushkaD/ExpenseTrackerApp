@@ -15,6 +15,7 @@ import {
   UPDATE_EXPENSE_SUCCESS,
 } from './actions';
 import reducer from './reducer';
+import { FIREBASE_DATABASE_URL } from '@env';
 
 const AppContext = createContext();
 
@@ -84,8 +85,7 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const httpFetch = axios.create({
-    baseURL:
-      'https://expense-tracker-react-na-c2abc-default-rtdb.asia-southeast1.firebasedatabase.app',
+    baseURL: FIREBASE_DATABASE_URL,
   });
 
   const addExpense = async ({ description, amount, date }) => {
